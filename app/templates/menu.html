@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+    {% block menu %}
+    <span><a href="/">Home</a></span>
+    <span>
+        <span id="showWork">Work Wiki's</span>
+        <span id="hideWork">
+            <a href="/work/codingdojo/">CodingDojo</a>
+            <a href="/work/sirch/">Sirch</a>
+            <a href="/work/courses/">Courses</a>
+            <a href="/work/beedev/">BeeDev</a>
+        </span>
+    </span>
+    <span>
+        <span id="showLearning">Learning Wiki's</span>
+        <span id="hideLearning">
+            <a href="/learning/lambda/">Lambda</a>
+            <a href="/learning/microsoft/">Microsoft</a>
+        </span>
+    </span>
+    <span>
+        <span id="showCoding">Coding Wiki's</span>
+        <span id="hideCoding">
+            <a href="/coding/volunteer/">Volunteer</a>
+            <a href="/coding/hackathons">Challenges & Hackathons</a>
+            <a href="/coding/personal/">Personal Sites & IDEs</a>
+        </span>
+    </span>
+    {% if user.id > 0 %}
+        <a href="/adminDash/">Dashboard</a>
+        <button><a href="/logout/">Logout</a></button>
+    {% endif %}
+    {% endblock menu %}
+</body>
+</html>
