@@ -4,18 +4,35 @@ from .models import *
 import bcrypt
 
 def index(request):
+    work = Link.objects.filter(page=1,theType=1,topic=1).order_by('order')
+    social = Link.objects.filter(page=1, theType=1, topic=2).order_by('order')
+    weather = Link.objects.filter(page=1, theType=1, topic=3).order_by('order')
     context = {
-       'work': Link.objects.all().values(),
-       'social': Link.objects.all().values,
-       'weather': Link.objects.all().values, 
+       'work': work,
+       'social': social,
+       'weather': weather, 
     }
     return render(request, 'index.html', context)
 
 def cd(request):
-    return render(request)
+    cohort = Link.objects.filter(page=2,theType=1).order_by('order')
+    admin = Link.objects.filter(page=2, theType=2).order_by('order')
+    misc = Link.objects.filter(page=2, theType=3).order_by('order')
+    context = {
+        'cohort': cohort,
+        'admin': admin,
+        'misc': misc
+    }
+    return render(request, 'work/codingDojo.html', context)
 
 def sirch(request):
-    return render(request)
+    tasks = Link.objects.filter(page=2,theType=1).order_by('order')
+    work = Link.objects.filter(page=2, theType=2).order_by('order')
+    context = {
+        'tasks': tasks,
+        'work': work,
+    }
+    return render(request, 'work/sirch.html', context)
 
 def bd(request):
     return render(request)
@@ -38,6 +55,8 @@ def microsoft(request):
 
 
 def logReg(request):
+    if 'user_id' in request.session:
+        return redirect('/dashboard')
     return render(request, 'admin/logReg.html')
 
 def logout(request):
@@ -151,9 +170,9 @@ def createLink(request):
     Link.objects.create(
         url = request.POST['url'],
         name = request.POST['name'],
-        page = request.POST['page'],
-        theType = request.POST['theType'],
-        topic = request.POST['topic'],
+        page_id = request.POST['page'],
+        theType_id = request.POST['theType'],
+        topic_id = request.POST['topic'],
         order = request.POST['order']
     )
     return redirect('/dashboard/')
