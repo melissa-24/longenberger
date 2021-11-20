@@ -1,0 +1,150 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type="image/jpg" href="{% static 'images/bee.jpg' %}"/>
+    <link rel='stylesheet' href='https://beedevservices.github.io/beedev-css/framework/beedev.css'>
+    <link rel="stylesheet" href="{% static 'styles.css'%}">
+    <title>Coding Dojo Wiki</title>
+</head>
+<body id='top'>
+    <header>
+        <h1>Coding Dojo Wiki</h1>
+        <nav>
+            {% block menu %} {% include 'menu.html' %} {% endblock menu %}
+        </nav>
+        <nav style="z-index: 1;">
+            <button class="stack">Web Fun / Python</button>
+        </nav>
+        <span><h4><span>Melissa Time: </span><span id="myTime" onload="est()"></span></h4>
+        <h4><span>Dojo Time: </span><span id="pacificTime" onload='pst()'></span></h4></span>
+    </header>
+    <main>
+        <div class="altnav">
+            <a href="#class">Class Links</a>
+            <a href="#admin">Admin Links</a>
+            <a href="#general">Monthly / General</a>
+        </div>
+        <h2 id='Class'>Class</h2>
+        <div class="altnav">
+            <a href="#top">Top</a>
+        </div>
+        <div class="row">
+            <div class="column">
+                <h3>Grading</h3>
+                <div class="nav">
+                    {% for c in cohort %}
+                        {% if c.topic_id == 1 %}
+                            <a href="{{c.url}}" target="_blank">{{c.name}}</a>
+                        {% endif %}
+                        {% if c.topic_id == 2 %}
+                            <a href="{{c.url}}" target="_blank" class='webFun'>{{c.name}}</a>
+                        {% endif %}
+                        {% if c.topic_id == 3 %}
+                            <a href="{{c.url}}" target="_blank" class='python'>{{c.name}}</a>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="column">
+                <h3>Email/General</h3>
+                <div class="nav">
+                    {% for c in cohort %}
+                        {% if c.topic_id == 4 %}
+                            <a href="{{c.url}}" target="_blank">{{c.name}}</a>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="column">
+                <h3 class='webFun'>Current class<br>Web Fundamentals</h3>
+                <div class="nav webFun">
+                    {% for c in cohort %}
+                        {% if c.topic_id == 6 %}
+                            <a href="{{c.url}}" target="_blank" class='webFun'>{{c.name}}</a>
+                        {% endif %}
+                        {% if c.topic_id == 5 %}
+                            <a href="{{c.url}}" target="_blank">{{c.name}}</a>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+                <h3 class='python'>Current class<br>Python</h3>
+                <div class="nav python">
+                    {% for c in cohort %}
+                        {% if c.topic_id == 7 %}
+                            <a href="{{c.url}}" target="_blank" class='python'>{{c.name}}</a>
+                        {% endif %}
+                        {% if c.topic_id == 5 %}
+                            <a href="{{c.url}}" target="_blank">{{c.name}}</a>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <h2 id='admin'>Admin</h2>
+        <div class="altnav">
+            <a href="#top">Top</a>
+        </div>
+        <div class="row">
+            <div class="column">
+                <h3>Drive</h3>
+                <div class="nav">
+                    {% for a in admin %}
+                        {% if a.topic_id == 1 %}
+                            <a href="{{a.url}}" target="_blank">{{a.name}}</a>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="column">
+                <h3>Calendars</h3>
+                <div class="nav">
+                    {% for a in admin %}
+                        {% if a.topic_id == 4 %}
+                            <a href="{{a.url}}" target="_blank">{{a.name}}</a>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <h2 id='general'>Monthly / General</h2>
+        <div class="altnav">
+            <a href="#top">Top</a>
+        </div>
+        <div class="row">
+            <div class="column">
+                <h3>Monthly</h3>
+                <div class="nav">
+                    {% for m in misc %}
+                        {% if m.topic_id == 1 %}
+                            <a href="{{m.url}}" target="_blank">{{m.name}}</a>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="column">
+                <h3>General</h3>
+                <div class="nav">
+                    {% for m in misc %}
+                        {% if m.topic_id == 4 %}
+                            <a href="{{m.url}}" target="_blank">{{m.name}}</a>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer>
+        {% block footer %} {% include 'footer.html' %} {% endblock footer %}
+    </footer>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="{% static 'scripts.js' %}"></script>
+    <script>
+        setInterval(est, 8000);
+        setInterval(pst, 8000)
+    </script>
+</body>
+</html>

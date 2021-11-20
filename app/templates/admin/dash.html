@@ -104,23 +104,75 @@
                 <h3>Page:</h3>
                 <ul>
                     {% for p in page %}
-                        <li>{{p.id}}: {{p.page}}</li>
+                        <li>{{p.id}}: {{p.page}} | <a href="/theAdmin/page/{{p.id}}/edit/">Edit</a></li>
                     {% endfor %}
                 </ul>
             </div>
             <div class="column">
-                <h3>Type: </h3>
+                <h3>Type:</h3>
                 <ul>
                     {% for type in theType %}
-                        <li>{{type.id}}: {{type.theType}}</li>
+                        <li>{{type.id}}: {{type.theType}} | <a href="/theAdmin/theType/{{type.id}}/edit/">Edit</a></li>
                     {% endfor %}
                 </ul>
             </div>
             <div class="column">
-                <h3>Topic: </h3>
+                <h3>Topic:</h3>
                 <ul>
                     {% for t in topic %}
-                        <li>{{t.id}}: {{t.topic}}</li>
+                        <li>{{t.id}}: {{t.topic}} | <a href="/theAdmin/topic/{{t.id}}/edit/">Edit</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="column">
+                <h3>Home Links:</h3>
+                <ul>
+                    {% for l in links %}
+                        {% if l.page_id == 1 %}
+                        <li>{{l.order}}: {{l.name}} | <a href="/theAdmin/links/{{l.id}}/edit/">Edit</a></li>
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="column">
+                <h3>Work Links:</h3>
+                <ul>
+                    {% for l in links %}
+                        {% if l.page_id == 2 %}
+                        <li>{{l.order}}: {{l.name}} | <a href="/theAdmin/links/{{l.id}}/edit/">Edit</a></li>
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="column">
+                <h3>Learning Links:</h3>
+                <ul>
+                    {% for l in links %}
+                        {% if l.page_id == 3 %}
+                        <li>{{l.order}}: {{l.name}} | <a href="/theAdmin/links/{{l.id}}/edit/">Edit</a></li>
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="column">
+                <h3>Personal Links:</h3>
+                <ul>
+                    {% for l in links %}
+                        {% if l.page_id == 4 %}
+                        <li>{{l.order}}: {{l.name}} | <a href="/theAdmin/links/{{l.id}}/edit/">Edit</a></li>
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="column">
+                <h3>Coding Links:</h3>
+                <ul>
+                    {% for l in links %}
+                        {% if l.page_id == 5 %}
+                        <li>{{l.order}}: {{l.name}} | <a href="/theAdmin/links/{{l.id}}/edit/">Edit</a></li>
+                        {% endif %}
                     {% endfor %}
                 </ul>
             </div>

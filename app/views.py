@@ -8,16 +8,16 @@ def index(request):
     social = Link.objects.filter(page=1, theType=1, topic=2).order_by('order')
     weather = Link.objects.filter(page=1, theType=1, topic=3).order_by('order')
     context = {
-       'work': work,
-       'social': social,
-       'weather': weather, 
+        'work': work,
+        'social': social,
+        'weather': weather, 
     }
     return render(request, 'index.html', context)
 
 def cd(request):
-    cohort = Link.objects.filter(page=2,theType=1).order_by('order')
-    admin = Link.objects.filter(page=2, theType=2).order_by('order')
-    misc = Link.objects.filter(page=2, theType=3).order_by('order')
+    cohort = Link.objects.filter(page=2,theType=2).order_by('order')
+    admin = Link.objects.filter(page=2, theType=3).order_by('order')
+    misc = Link.objects.filter(page=2, theType=4).order_by('order')
     context = {
         'cohort': cohort,
         'admin': admin,
@@ -26,8 +26,8 @@ def cd(request):
     return render(request, 'work/codingDojo.html', context)
 
 def sirch(request):
-    tasks = Link.objects.filter(page=2,theType=1).order_by('order')
-    work = Link.objects.filter(page=2, theType=2).order_by('order')
+    tasks = Link.objects.filter(page=2,theType=5).order_by('order')
+    work = Link.objects.filter(page=2, theType=6).order_by('order')
     context = {
         'tasks': tasks,
         'work': work,
@@ -35,22 +35,91 @@ def sirch(request):
     return render(request, 'work/sirch.html', context)
 
 def bd(request):
+    services = Link.objects.filter(page=2,theType=7).order_by('order')
+    classroom = Link.objects.filter(page=2,theType=8).order_by('order')
+    themes = Link.objects.filter(page=2,theType=9).order_by('order')
+    important = Link.objects.filter(page=2,theType=10).order_by('order')
+    context = {
+        'services': services,
+        'classroom': classroom,
+        'themes': themes,
+        'important': important,
+    }
+    return render(request, 'work/beeDev.html', context)
+
+def bloomTech(request):
+    training = Link.objects.filter(page=3, theType=2).order_by('order')
+    notes = Link.objects.filter(page=3, theType=4).order_by('order')
+    context = {
+        'training': training,
+        'notes': notes,
+    }
+    return render(request, 'learning/lambda.html', context)
+
+def microsoft(request):
+    dojo = Link.objects.filter(page=3, theType=6).order_by('order')
+    training = Link.objects.filter(page=3, theType=8).order_by('order')
+    context = {
+        'dojo': dojo,
+        'training': training,
+    }
+    return render(request, 'learning/microsoft.html', context)
+
+def scotch(request):
+    markup = Link.objects.filter(page=3, theType=11).order_by('order')
+    javaScript = Link.objects.filter(page=3, theType=12).order_by('order')
+    react = Link.objects.filter(page=3, theType=13).order_by('order')
+    python = Link.objects.filter(page=3, theType=14).order_by('order')
+    context = {
+        'markup': markup,
+        'javaScript': javaScript,
+        'react': react,
+        'python': python,
+    }
+    return render(request, 'learning/scotch.html', context)
+
+def schools(request):
+    coding = Link.objects.filter(page=3, theType=15).order_by('order')
+    misc = Link.objects.filter(page=3, theType=1)
     return render(request)
 
 def personal(request):
-    return render(request)
-
-def hack(request):
-    return render(request)
+    tasks = Link.objects.filter(page=4, theType=5).order_by('order')
+    general = Link.objects.filter(page=4, theType=4).order_by('order')
+    misc = Link.objects.filter(page=4, theType=1).order_by('order')
+    context = {
+        'tasks': tasks,
+        'general': general,
+        'misc': misc
+    }
+    return render(request, 'personal.html', context)
 
 def volunteer(request):
-    return render(request)
+    services = Link.objects.filter(page=5, theType=7).order_by('order')
+    general = Link.objects.filter(page=5, theType=4).order_by('order')
+    context = {
+        'services': services,
+        'general': general,
+    }
+    return render(request, 'coding/volunteer.html', context)
 
-def bloomTech(request):
-    return render(request)
+def hack(request):
+    coding = Link.objects.filter(page=5, theType=15).order_by('order')
+    classroom = Link.objects.filter(page=5, theType=8).order_by('order')
+    context = {
+        'coding': coding,
+        'classroom': classroom,
+    }
+    return render(request, 'coding/hackathons.html', context)
 
-def microsoft(request):
-    return render(request)
+def websites(request):
+    misc = Link.objects.filter(page=5, theType=1).order_by('order')
+    web = Link.objects.filter(page=5, theType=12).order_by('order')
+    context = {
+        'misc': misc,
+        'web': web,
+    }
+    return render(request, 'coding/websites.html', context)
 
 
 
@@ -100,6 +169,7 @@ def adminDash(request):
         'page': Page.objects.all().values(),
         'theType': Type.objects.all().values(),
         'topic': Topic.objects.all().values(),
+        'links': Link.objects.all().values(),
         'user': user,
     }
     return render(request, 'admin/dash.html', context)
@@ -113,16 +183,28 @@ def createPage(request):
     )
     return redirect('/dashboard/')
 
-def editPage(request):
+def editPage(request, page_id):
     if 'user_id' not in request.session:
         return redirect('/')
-    return render(request)
+    else:
+        user = User.objects.get(id=request.session['user_id'])
+        page = Page.objects.get(id=page_id)
+        context = {
+            'user': user,
+            'page': page,
+        }
+        return render(request, 'admin/editPage.html', context)
 
-def updatePage(request):
-    pass
+def updatePage(request, page_id):
+    toUpdate = Page.objects.get(id=page_id)
+    toUpdate.page=request.POST['page']
+    toUpdate.save()
+    return redirect(f'/theAdmin/page/{page_id}/edit/')
 
-def deletePage(request):
-    pass
+def deletePage(request, page_id):
+    toDelete = Page.objects.get(id=page_id)
+    toDelete.delete()
+    return redirect('/dashboard')
 
 
 
