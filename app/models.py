@@ -51,7 +51,8 @@ class Topic(models.Model):
     topic = models.CharField(max_length=255)
 
 class Link(models.Model):
-    link = models.CharField(max_length=255)
+    url = models.CharField(max_length=255)
+    name = models.CharField(max_length=255)
     page = models.ForeignKey(Page, related_name='pages', on_delete=CASCADE)
     theType = models.ForeignKey(Type, related_name='types', on_delete=CASCADE)
     topic = models.ForeignKey(Topic, related_name='topics', on_delete=CASCADE)

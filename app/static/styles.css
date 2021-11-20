@@ -1,0 +1,142 @@
+.flexrow {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.flexcolumn {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+* {
+  text-align: center;
+}
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #0f4646;
+  background-image: url('/static/images/hexellence.png');
+  color: #fff;
+}
+body a {
+  color: #fff;
+  text-decoration: none;
+  padding: 0.2em;
+}
+body header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+body header nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  align-items: flex-start;
+  height: 75px;
+  z-index: 2;
+}
+body header nav a,
+body header nav #showWork,
+body header nav #showLearning,
+body header nav #showHome,
+body header nav #showCoding {
+  color: #fff;
+  text-decoration: none;
+  padding: 3em;
+}
+body header nav #hideWork,
+body header nav #hideLearning,
+body header nav #hideHome,
+body header nav #hideCoding {
+  display: none;
+  margin: 0.5em;
+  z-index: 4;
+  background-color: #0000007a;
+  border-radius: 20%;
+}
+body header nav #hideWork a,
+body header nav #hideLearning a,
+body header nav #hideHome a,
+body header nav #hideCoding a {
+  color: #fff;
+  text-decoration: none;
+  padding: 0.5em;
+}
+body main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #61b8b85d;
+  padding: 3em;
+  margin: 1em;
+}
+body main .altnav {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+body main .altnav a {
+  background-color: #0000007a;
+  border-radius: 30%;
+  color: #fff;
+  text-decoration: underline;
+  margin: 0 1em;
+  padding: 0.5em;
+}
+body main .row {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  align-items: flex-start;
+}
+body main .row .column {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 1em;
+  padding: 1em;
+}
+body main .row .column h3 {
+  border: 3px groove #0f4646;
+  padding: 0.5em 1.5em;
+}
+body main .row .column .nav {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+body main .row .column .nav a {
+  color: #fff;
+  text-decoration: none;
+  padding: 1em;
+}
+body main .row .column .nav .python {
+  display: none;
+}
+body main .row .column .python {
+  display: none;
+}
+body.ptPython main .row .column .webFun {
+  display: none;
+}
+body.ptPython main .row .column .python {
+  display: flex;
+}
+body.ptPython main .row .column .nav .webFun {
+  display: none;
+}
+body.ptPython main .row .column .nav .python {
+  display: flex;
+}

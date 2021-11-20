@@ -27,9 +27,9 @@
             <a href="/coding/personal/">Personal Sites & IDEs</a>
         </span>
     </span>
-    {% if user.id > 0 %}
-        <a href="/adminDash/">Dashboard</a>
-        <button><a href="/logout/">Logout</a></button>
+        {% if user.id > 0 %}
+        <span><a href="/adminDash/">Dashboard</a></span>
+        <span><a href="/logout/">Logout</a></span>
     {% endif %}
     {% endblock menu %}
 </body>

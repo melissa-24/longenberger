@@ -1,0 +1,75 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type="image/jpg" href="{% static 'images/bee.jpg' %}"/>
+    <link rel='stylesheet' href='https://beedevservices.github.io/beedev-css/framework/beedev.css'>
+    <link rel="stylesheet" href="{% static 'styles.css'%}">
+    <title>Home Page</title>
+</head>
+<body>
+    <header>
+        <nav>
+            {% block menu %} {% include 'menu.html' %} {% endblock menu %}
+        </nav>
+        <h4><span>Melissa Time: </span><span id="myTime" onload="est()"></span></h4>
+    </header>
+    <main>
+        {% if messages %}
+        <section class='messages'>
+            {% for message in messages %}
+            <h3 {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</h3>
+            {% endfor %}
+        </section>
+        {% endif %}
+        <div class="row">
+            <form action='/login/' method='post'>
+                {% csrf_token %}
+                <section class='row'>
+                    <label for='username'>Username</label>
+                    <input name='username' id='username' type='text'>
+                </section>
+                <section class='row'>
+                    <label for='password'>Password</label>
+                    <input name='password' id='password' type='password'>
+                </section>
+                <button>Sign In</button>
+            </form>
+            <form action='/register/' method='post'>
+                {% csrf_token %}
+                <section class='row'>
+                    <label for='firstName'>First Name:</label>
+                    <input type='text' name='firstName' id='firstName'>
+                </section>
+                <section class='row'>
+                    <label for='lastName'>Last Name:</label>
+                    <input type='text' name='lastName' id='lastName'>
+                </section>
+                <section class='row'>
+                    <label for='username'>Username:</label>
+                    <input type='text' name='username' id='username'>
+                </section>
+                <section>
+                    <label for='email'>Email:</label>
+                    <input type='text' name='email' id='email'>
+                </section>
+                <section class='row'>
+                    <label for='password'>Password:</label>
+                    <input type='password' name='password' id='password'>
+                </section>
+                <section class='row'>
+                    <label for='confirm'>Confirm Password</label>
+                    <input type='password' name='confirm' id='confirm'>
+                </section>
+                <button>Submit and Login</button>
+            </form>
+        </div>
+    </main>
+    <footer>
+        {% block footer %} {% include 'footer.html' %} {% endblock footer %}
+    </footer>
+</body>
+</html>

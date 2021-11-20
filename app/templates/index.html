@@ -5,28 +5,52 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type="image/jpg" href="{% static 'images/bee.jpg' %}"/>
     <link rel='stylesheet' href='https://beedevservices.github.io/beedev-css/framework/beedev.css'>
     <link rel="stylesheet" href="{% static 'styles.css'%}">
-    <title>Fun Django App</title>
+    <title>Home Page</title>
 </head>
 <body>
     <header>
-        <h1>Current Time: {{time}}</h1>
+        <h1>Melissa's Wiki</h1>
         <nav>
             {% block menu %} {% include 'menu.html' %} {% endblock menu %}
         </nav>
+        <h4><span>Melissa Time: </span><span id="myTime" onload="est()"></span></h4>
     </header>
     <main>
-        <h2>Welcome to our Application!!</h2>
-        <p>Here we will explore Django with the following pages:</p>
-        <ul>
-            <li>Notes</li>
-            <li>Tasks</li>
-            <li>Uploads</li>
-        </ul>
+        <h2>Misc Links</h2>
+        <div class="row">
+            <div class="column">
+                <h3>Work Related</h3>
+                <div class="nav">
+                    {% for w in work %}
+                        <a href="{{w.url}}" target="_blank">{{w.name}}</a>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="column">
+                <h3>Social</h3>
+                {% for s in social %}
+                <a href="{{s.url}}" target="_blank">{{s.name}}</a>
+                {% endfor %}
+            </div>
+            <div class="column">
+                <h3>Weather Links</h3>
+                {% for w in weather %}
+                <a href="{{w.url}}" target="_blank">{{w.name}}</a>
+                {% endfor %}
+            </div>
+        </div>
     </main>
     <footer>
         {% block footer %} {% include 'footer.html' %} {% endblock footer %}
     </footer>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="{% static 'scripts.js' %}"></script>
+    <script>
+        setInterval(est, 8000);
+        // myTime()
+    </script>
 </body>
 </html>

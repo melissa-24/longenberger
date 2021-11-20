@@ -1,0 +1,130 @@
+.flexrow {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.flexcolumn {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+* {
+    text-align: center
+}
+
+body {
+    .flexcolumn();
+    background-color: #0f4646;
+    background-image: url('/static/images/hexellence.png');
+    color: #fff;
+
+    a {
+        color: #fff;
+        text-decoration: none;
+        padding: .2em;
+    }
+    header {
+        .flexcolumn();
+
+        nav {
+            .flexrow();
+            align-items: flex-start;
+            height: 75px;
+            z-index: 2;
+    
+            a, #showWork, #showLearning, #showHome, #showCoding {
+                color: #fff;
+                text-decoration: none;
+                padding: 3em;
+            }
+            #hideWork, #hideLearning, #hideHome, #hideCoding {
+                display: none;
+                margin: .5em;
+                z-index: 4;
+                background-color: #0000007a;
+                border-radius: 20%;
+
+                a {
+                    color: #fff;
+                    text-decoration: none;
+                    padding: .5em;
+                }
+            }
+        }
+    }
+    main {
+        .flexcolumn();
+        background-color: #61b8b85d;
+        padding: 3em;
+        margin: 1em;
+
+        .altnav {
+            .flexrow();
+
+            a {
+                background-color: #0000007a;
+                border-radius: 30%;
+                color: #fff;
+                text-decoration: underline;
+                margin: 0 1em;
+                padding: .5em;
+            }
+        }
+        .row {
+            .flexrow();
+            align-items: flex-start;
+
+            .column {
+                .flexcolumn();
+                margin: 1em;
+                padding: 1em;
+
+                h3 {
+                    border: 3px groove #0f4646;
+                    padding: .5em 1.5em;
+                }
+                .nav {
+                    .flexcolumn();
+    
+                    a {
+                        color: #fff;
+                        text-decoration: none;
+                        padding: 1em;
+                    }
+                    .python {
+                        display: none;
+                    }
+                }
+                .python {
+                    display: none;
+                }
+            }
+        }
+    }
+}
+
+body.ptPython {
+    main {
+        .row {
+            .column {
+                .webFun {
+                    display: none;
+                }
+                .python {
+                    display: flex;
+                }
+                .nav {
+                    .webFun {
+                        display: none;
+                    }
+                    .python {
+                        display: flex;
+                    }
+                }
+            }
+        }
+    }
+}

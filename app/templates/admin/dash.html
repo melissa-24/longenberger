@@ -1,0 +1,139 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type="image/jpg" href="{% static 'images/bee.jpg' %}"/>
+    <link rel='stylesheet' href='https://beedevservices.github.io/beedev-css/framework/beedev.css'>
+    <link rel="stylesheet" href="{% static 'styles.css'%}">
+    <title>Home Page</title>
+</head>
+<body>
+    <header>
+        <h1>Melissa's Wiki</h1>
+        <nav>
+            {% block menu %} {% include 'menu.html' %} {% endblock menu %}
+        </nav>
+        <h4><span>Melissa Time: </span><span id="myTime" onload="est()"></span></h4>
+    </header>
+    <main>
+        <div class="row">
+            <div class="column">
+                <h3>Page: </h3>
+                <form action='/theAdmin/createPage/' method='post'>
+                    {% csrf_token %}
+                    <section>
+                        <label for='page'>Page Type:</label>
+                        <input name='page' type='text'>
+                    </section>
+                    <button>Page Type</button>
+                </form>
+            </div>
+            <div class="column">
+                <h3>Type: </h3>
+                <form action='/theAdmin/createType/' method='post'>
+                    {% csrf_token %}
+                    <section>
+                        <label for='theType'>Link Type: </label>
+                        <input name='theType' type='text'>
+                    </section>
+                    <button>Link Type</button>
+                </form>
+            </div>
+            <div class="column">
+                <h3>Topic: </h3>
+                <form action='/theAdmin/createTopic/' method='post'>
+                    {% csrf_token %}
+                    <section>
+                        <label for='topic'>Topic: </label>
+                        <input name='topic' type='text'>
+                    </section>
+                    <button>Topic</button>
+                </form>
+            </div>
+        </div>
+        <div class="row">
+            <div class="column">
+                <h3>Link</h3>
+                <form action='/theAdmin/createLink/' method='post'>
+                    {% csrf_token %}
+                    <section>
+                        <label for='url'>URL: </label>
+                        <input name='url' type='text'>
+                    </section>
+                    <section>
+                        <label for='name'>Link Name: </label>
+                        <input name='name' type='text'>
+                    </section>
+                    <section>
+                        <label for='page'>Page</label>
+                        <select name="page">
+                            {% for p in page %}
+                                <option value="{{p.id}}">{{p.page}}</option>
+                            {% endfor %}
+                        </select>
+                    </section>
+                    <section>
+                        <label for='theType'>Type: </label>
+                        <select name="theType">
+                            {% for type in theType %}
+                                <option value="{{type.id}}">{{type.theType}}</option>
+                            {% endfor %}
+                        </select>
+                    </section>
+                    <section>
+                        <label for='topic'>Topic: </label>
+                        <select name="topic">
+                            {% for t in topic %}
+                                <option value="{{t.id}}">{{t.topic}}</option>
+                            {% endfor %}
+                        </select>
+                    </section>
+                    <section>
+                        <label for='order'>Order: </label>
+                        <input name='order' type='number'>
+                    </section>
+                    <button>Links</button>
+                </form>
+            </div>
+        </div>
+        <div class="row">
+            <div class="column">
+                <h3>Page:</h3>
+                <ul>
+                    {% for p in page %}
+                        <li>{{p.id}}: {{p.page}}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="column">
+                <h3>Type: </h3>
+                <ul>
+                    {% for type in theType %}
+                        <li>{{type.id}}: {{type.theType}}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="column">
+                <h3>Topic: </h3>
+                <ul>
+                    {% for t in topic %}
+                        <li>{{t.id}}: {{t.topic}}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </main>
+    <footer>
+        {% block footer %} {% include 'footer.html' %} {% endblock footer %}
+    </footer>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="{% static 'scripts.js' %}"></script>
+    <script>
+        setInterval(est, 8000);
+        // myTime()
+    </script>
+</body>
+</html>
