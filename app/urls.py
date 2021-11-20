@@ -6,7 +6,7 @@ urlpatterns = [
     path('work/codingDojo/', views.cd),
     path('work/sirch/', views.sirch),
     path('work/beedev/', views.bd),
-    path('learning/lambda', views.bloomTech),
+    path('learning/lambda/', views.bloomTech),
     path('learning/microsoft/', views.microsoft),
     path('learning/scotch/', views.scotch),
     path('learning/schools/', views.schools),

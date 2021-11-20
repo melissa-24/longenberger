@@ -81,7 +81,11 @@ def scotch(request):
 def schools(request):
     coding = Link.objects.filter(page=3, theType=15).order_by('order')
     misc = Link.objects.filter(page=3, theType=1)
-    return render(request)
+    context = {
+        'coding': coding,
+        'misc': misc,
+    }
+    return render(request, 'learning/schools.html', context)
 
 def personal(request):
     tasks = Link.objects.filter(page=4, theType=5).order_by('order')

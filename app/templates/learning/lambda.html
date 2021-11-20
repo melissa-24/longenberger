@@ -1,0 +1,87 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type="image/jpg" href="{% static 'images/bee.jpg' %}"/>
+    <link rel='stylesheet' href='https://beedevservices.github.io/beedev-css/framework/beedev.css'>
+    <link rel="stylesheet" href="{% static 'styles.css'%}">
+    <title>Lambda Wiki</title>
+</head>
+<body>
+    <header>
+        <h1>Lambda Wiki</h1>
+        <nav>
+            {% block menu %} {% include 'menu.html' %} {% endblock menu %}
+        </nav>
+        <span><h4><span>Melissa Time: </span><span id="myTime" onload="est()"></span></h4>
+        <h4><span>Lambda Time: </span><span id="pacificTime" onload='pst()'></span></h4></span>
+    </header>
+    <main>
+        <h2>Training Kits</h2>
+        <div class="row">
+            <div class="column">
+                <h3>Web Dev</h3>
+                <div class="nav">
+                    {% for t in training %}
+                        {% if t.topic_id == 1 %}
+                            <a href="{{t.url}}" target="_blank">{{t.name}}</a>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="column">
+                <h3>Data Science</h3>
+                <div class="nav">
+                    {% for t in training %}
+                        {% if t.topic_id == 4 %}
+                            <a href="{{t.url}}" target="_blank">{{t.name}}</a>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="column">
+                <h3>Computer Science</h3>
+                <div class="nav">
+                    {% for t in training %}
+                        {% if t.topic_id == 5 %}
+                            <a href="{{t.url}}" target="_blank">{{t.name}}</a>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <h2>Notes</h2>
+        <div class="row">
+            <div class="column">
+                <h3>Instructor Notes</h3>
+                <div class="nav">
+                    {% for n in notes %}
+                        {% if n.topic_id == 1 %}
+                            <a href="{{n.url}}" target="_blank">{{n.name}}</a>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="column">
+                <h3>Personal Notes</h3>
+                <div class="nav">
+                    {% for n in notes %}
+                        {% if n.topic_id == 4 %}
+                            <a href="{{n.url}}" target="_blank">{{n.name}}</a>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </main>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="{% static 'scripts.js' %}"></script>
+    <script>
+        setInterval(est, 8000);
+        setInterval(pst, 8000)
+    </script>
+</body>
+</html>

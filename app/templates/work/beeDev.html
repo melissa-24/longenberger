@@ -1,0 +1,147 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type="image/jpg" href="{% static 'images/bee.jpg' %}"/>
+    <link rel='stylesheet' href='https://beedevservices.github.io/beedev-css/framework/beedev.css'>
+    <link rel="stylesheet" href="{% static 'styles.css'%}">
+    <title>BeeDev Wiki</title>
+</head>
+<body>
+    <header>
+        <h1>BeeDev Wiki</h1>
+        <nav>
+            {% block menu %} {% include 'menu.html' %} {% endblock menu %}
+        </nav>
+    </header>
+    <main>
+        <h2>BeeDev Services</h2>
+        <div class="row">
+            <div class="column">
+                <h3>Docs</h3>
+                <div class="nav">
+                    {% for s in services %}
+                        {% if s.topic_id == 1 %}
+                            <a href="{{s.url}}" target="_blank">{{s.name}}</a>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="column">
+                <h3>Git Repos</h3>
+                <div class="nav">
+                    {% for s in services %}
+                        {% if s.topic_id == 4 %}
+                            <a href="{{s.url}}" target="_blank">{{s.name}}</a>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="column">
+                <h3>Live Sites</h3>
+                <div class="nav">
+                    {% for s in services %}
+                        {% if s.topic_id == 5 %}
+                            <a href="{{s.url}}" target="_blank">{{s.name}}</a>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <h2>BeeDev Classroom</h2>
+        <div class="row">
+            <div class="column">
+                <h3>Docs</h3>
+                <div class="nav">
+                    {% for c in classroom %}
+                        {% if c.topic_id == 1 %}
+                            <a href="{{c.url}}" target="_blank">{{c.name}}</a>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="column">
+                <h3>Git Repos</h3>
+                <div class="nav">
+                    {% for c in classroom %}
+                        {% if c.topic_id == 4 %}
+                            <a href="{{c.url}}" target="_blank">{{c.name}}</a>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="column">
+                <h3>Live Sites</h3>
+                <div class="nav">
+                    {% for c in classroom %}
+                        {% if c.topic_id == 5 %}
+                            <a href="{{c.url}}" target="_blank">{{c.name}}</a>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <h2>BeeDev Themes</h2>
+        <div class="row">
+            <div class="column">
+                <h3>Docs</h3>
+                <div class="nav">
+                    {% for t in themes %}
+                        {% if t.topic_id == 1 %}
+                            <a href="{{t.url}}" target="_blank">{{t.name}}</a>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="column">
+                <h3>Git Repos</h3>
+                <div class="nav">
+                    {% for t in themes %}
+                        {% if t.topic_id == 4 %}
+                            <a href="{{t.url}}" target="_blank">{{t.name}}</a>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="column">
+                <h3>Live Sites</h3>
+                <div class="nav">
+                    {% for t in themes %}
+                        {% if t.topic_id == 5 %}
+                            <a href="{{t.url}}" target="_blank">{{t.name}}</a>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <h2>Important Links</h2>
+        <div class="row">
+            <div class="column">
+                <h3>Acct Links</h3>
+                <div class="nav">
+                    {% for i in important %}
+                        {% if i.topic_id == 1 %}
+                            <a href="{{i.url}}" target="_blank">{{i.name}}</a>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="column">
+                <h3>Other Important Links</h3>
+                <div class="nav">
+                    {% for i in important %}
+                        {% if i.topic_id == 4 %}
+                            <a href="{{i.url}}" target="_blank">{{i.name}}</a>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </main>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="{% static 'scripts.js' %}"></script>
+</body>
+</html>
