@@ -126,16 +126,12 @@ def logout(request):
     return redirect('/')
 
 def login(request):
-    user = User.objects.filter(username = request.POST['username'])
-    if user:
-        userLogin = user[0]
-        if bcrypt.checkpw(request.POST['password'].encode(), userLogin.password.encode()):
-            request.session['user_id'] = userLogin.id
-            return redirect('/dashboard/')
+    if not User.objects.authenticate(request.POST['username'], request.POST['password']):
         messages.error(request, 'Invalid Credentials')
         return redirect('/')
-    messages.error(request, 'That Username is not in our system, please register for an account')
-    return redirect('/')
+    user = User.objects.get(username = request.POST['username'])
+    request.session['user_id'] = user.id
+    return redirect('/dashboard/')
 
 def register(request):
     errors = User.objects.validate(request.POST)
@@ -143,14 +139,7 @@ def register(request):
         for err in errors.values():
             messages.error(request, err)
         return redirect('/logReg/')
-    hashedPw = bcrypt.hashpw(request.POST['password'].encode(), bcrypt.gensalt()).decode()
-    newUser = User.objects.create(
-        firstName = request.POST['firstName'],
-        lastName = request.POST['lastName'],
-        email = request.POST['email'],
-        username = request.POST['username'],
-        password = hashedPw
-    )
+    newUser = User.objects.register(request.POST)
     request.session['user_id'] = newUser.id
     return redirect('/dashboard/')
 

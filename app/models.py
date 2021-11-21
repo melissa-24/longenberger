@@ -32,6 +32,24 @@ class UserManager(models.Manager):
 
         return errors
 
+    def authenticate(self, username, password):
+        users = self.filter(username=username)
+        if not users:
+            return False
+
+        user = users[0]
+        return bcrypt.checkpw(password.encode(), user.password.encode())
+
+    def register(self, form):
+        pw = bcrypt.hashpw(form['password'].encode(), bcrypt.gensalt()).decode()
+        return self.create(
+            firstName = form['firstName'],
+            lastName = form['lastName'],
+            email = form['email'],
+            username = form['username'],
+            password = pw,
+        )
+
 class User(models.Model):
     firstName = models.CharField(max_length=45)
     lastName = models.CharField(max_length=45)
