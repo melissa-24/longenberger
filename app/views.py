@@ -208,16 +208,28 @@ def createType(request):
     )
     return redirect('/dashboard/')
 
-def editType(request):
+def editType(request, type_id):
     if 'user_id' not in request.session:
         return redirect('/')
-    return render(request)
+    else:
+        user = User.objects.get(id=request.session['user_id'])
+        theType = Type.objects.get(id=type_id)
+        context = {
+            'user': user,
+            'theType': theType,
+        }
+        return render(request, 'admin/editType.html', context)
 
-def updateType(request):
-    pass
+def updateType(request, type_id):
+    toUpdate = Type.objects.get(id=type_id)
+    toUpdate.theType=request.POST['theType']
+    toUpdate.save()
+    return redirect(f'/theAdmin/type/{type_id}/edit/')
 
-def deleteType(request):
-    pass
+def deleteType(request, type_id):
+    toDelete = Type.objects.get(id=type_id)
+    toDelete.delete()
+    return redirect('/dashboard')
 
 
 
@@ -227,16 +239,28 @@ def createTopic(request):
     )
     return redirect('/dashboard/')
 
-def editTopic(request):
+def editTopic(request, topic_id):
     if 'user_id' not in request.session:
         return redirect('/')
-    return render(request)
+    else:
+        user = User.objects.get(id=request.session['user_id'])
+        topic = Topic.objects.get(id=topic_id)
+        context = {
+            'user': user,
+            'topic': topic,
+        }
+        return render(request, 'admin/editTopic.html', context)
 
-def updateTopic(request):
-    pass
+def updateTopic(request, topic_id):
+    toUpdate = Topic.objects.get(id=topic_id)
+    toUpdate.topic=request.POST['topic']
+    toUpdate.save()
+    return redirect(f'/theAdmin/topic/{topic_id}/edit/')
 
-def deleteTopic(request):
-    pass
+def deleteTopic(request, topic_id):
+    toDelete = Topic.objects.get(id=topic_id)
+    toDelete.delete()
+    return redirect('/dashboard')
 
 
 
@@ -252,14 +276,31 @@ def createLink(request):
     )
     return redirect('/dashboard/')
 
-def editLink(request):
+def editLink(request, link_id):
     if 'user_id' not in request.session:
         return redirect('/')
-    return render(request)
+    else:
+        user = User.objects.get(id=request.session['user_id'])
+        link = Link.objects.get(id=link_id)
+        context = {
+            'user': user,
+            'link': link,
+        }
+        return render(request, 'admin/editLink.html', context)
 
-def updateLink(request):
-    pass
+def updateLink(request, link_id):
+    toUpdate = Link.objects.get(id=link_id)
+    toUpdate.url=request.POST['url']
+    toUpdate.name=request.POST['name']
+    toUpdate.page=request.POST['page']
+    toUpdate.theType=request.POST['theType']
+    toUpdate.topic=request.POST['topic']
+    toUpdate.order=request.POST['order']
+    toUpdate.save()
+    return redirect(f'/theAdmin/links/{link_id}/edit/')
 
-def deleteLink(request):
-    pass
+def deleteLink(request, link_id):
+    toDelete = Link.objects.get(id=link_id)
+    toDelete.delete()
+    return redirect('/dashboard')
 
