@@ -1,6 +1,6 @@
 from django.db import models
 import re
-
+import bcrypt
 from django.db.models.deletion import CASCADE
 
 class UserManager(models.Manager):
