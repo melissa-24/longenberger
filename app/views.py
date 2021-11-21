@@ -181,10 +181,10 @@ def editPage(request, page_id):
         return redirect('/')
     else:
         user = User.objects.get(id=request.session['user_id'])
-        page = Page.objects.get(id=page_id)
+        edit = Page.objects.get(id=page_id)
         context = {
             'user': user,
-            'page': page,
+            'edit': edit,
         }
         return render(request, 'admin/editPage.html', context)
 
@@ -213,10 +213,10 @@ def editType(request, type_id):
         return redirect('/')
     else:
         user = User.objects.get(id=request.session['user_id'])
-        theType = Type.objects.get(id=type_id)
+        edit = Type.objects.get(id=type_id)
         context = {
             'user': user,
-            'theType': theType,
+            'edit': edit,
         }
         return render(request, 'admin/editType.html', context)
 
@@ -244,10 +244,10 @@ def editTopic(request, topic_id):
         return redirect('/')
     else:
         user = User.objects.get(id=request.session['user_id'])
-        topic = Topic.objects.get(id=topic_id)
+        edit = Topic.objects.get(id=topic_id)
         context = {
             'user': user,
-            'topic': topic,
+            'edit': edit,
         }
         return render(request, 'admin/editTopic.html', context)
 
@@ -281,10 +281,13 @@ def editLink(request, link_id):
         return redirect('/')
     else:
         user = User.objects.get(id=request.session['user_id'])
-        link = Link.objects.get(id=link_id)
+        edit = Link.objects.get(id=link_id)
         context = {
             'user': user,
-            'link': link,
+            'edit': edit,
+            'page': Page.objects.all().values(),
+            'theType': Type.objects.all().values(),
+            'topic': Topic.objects.all().values(),
         }
         return render(request, 'admin/editLink.html', context)
 

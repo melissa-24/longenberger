@@ -8,11 +8,11 @@
     <link rel="shortcut icon" type="image/jpg" href="{% static 'images/bee.jpg' %}"/>
     <link rel='stylesheet' href='https://beedevservices.github.io/beedev-css/framework/beedev.css'>
     <link rel="stylesheet" href="{% static 'styles.css'%}">
-    <title>Home Page</title>
+    <title>{{user.firstName}}'s Dashboard</title>
 </head>
 <body>
     <header>
-        <h1>Melissa's Wiki</h1>
+        <h1>Welcome {{user.firstName}} to the Dashboard</h1>
         <nav>
             {% block menu %} {% include 'menu.html' %} {% endblock menu %}
         </nav>
