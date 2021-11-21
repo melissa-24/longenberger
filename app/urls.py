@@ -10,7 +10,6 @@ urlpatterns = [
     path('learning/microsoft/', views.microsoft),
     path('learning/scotch/', views.scotch),
     path('learning/schools/', views.schools),
-    path('personal/', views.personal),
     path('coding/volunteer/', views.volunteer),
     path('coding/hackathons/', views.hack),
     path('coding/personal/', views.websites),

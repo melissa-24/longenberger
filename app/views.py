@@ -87,17 +87,6 @@ def schools(request):
     }
     return render(request, 'learning/schools.html', context)
 
-def personal(request):
-    tasks = Link.objects.filter(page=4, theType=5).order_by('order')
-    general = Link.objects.filter(page=4, theType=4).order_by('order')
-    misc = Link.objects.filter(page=4, theType=1).order_by('order')
-    context = {
-        'tasks': tasks,
-        'general': general,
-        'misc': misc
-    }
-    return render(request, 'personal.html', context)
-
 def volunteer(request):
     services = Link.objects.filter(page=5, theType=7).order_by('order')
     general = Link.objects.filter(page=5, theType=4).order_by('order')
@@ -108,11 +97,11 @@ def volunteer(request):
     return render(request, 'coding/volunteer.html', context)
 
 def hack(request):
-    coding = Link.objects.filter(page=5, theType=15).order_by('order')
-    classroom = Link.objects.filter(page=5, theType=8).order_by('order')
+    hackathons = Link.objects.filter(page=5, theType=15).order_by('order')
+    challenges = Link.objects.filter(page=5, theType=8).order_by('order')
     context = {
-        'coding': coding,
-        'classroom': classroom,
+        'hackathons': hackathons,
+        'challenges': challenges,
     }
     return render(request, 'coding/hackathons.html', context)
 

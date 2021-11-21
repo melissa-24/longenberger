@@ -1,0 +1,101 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type="image/jpg" href="{% static 'images/bee.jpg' %}"/>
+    <link rel='stylesheet' href='https://beedevservices.github.io/beedev-css/framework/beedev.css'>
+    <link rel="stylesheet" href="{% static 'styles.css'%}">
+    <title>Volunteer Wiki</title>
+</head>
+<body>
+    <header>
+        <h1>Volunteer Wiki</h1>
+        <nav>
+            {% block menu %} {% include 'menu.html' %} {% endblock menu %}
+        </nav>
+    </header>
+    <main>
+        <h2>CFA</h2>
+        <div class="row">
+            <div class="column">
+                <h3>Docs</h3>
+                <div class="nav">
+                    {% for s in services %}
+                        {% if s.topic_id == 1 %}
+                            <a href="{{s.url}}" target="_blank">{{s.name}}</a>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="column">
+                <h3>Code Base</h3>
+                <div class="nav">
+                    {% for s in services %}
+                        {% if s.topic_id == 4 %}
+                            <a href="{{s.url}}" target="_blank">{{s.name}}</a>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="column">
+                <h3>Sites / Social</h3>
+                <div class="nav">
+                    {% for s in services %}
+                        {% if s.topic_id == 5 %}
+                            <a href="{{s.url}}" target="_blank">{{s.name}}</a>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="column">
+                <h3>Hosting</h3>
+                <div class="nav">
+                    {% for s in services %}
+                        {% if s.topic_id == 8 %}
+                            <a href="{{s.url}}" target="_blank">{{s.name}}</a>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <h2>Dragons Edge</h2>
+        <div class="row">
+            <div class="column">
+                <h3>Code Base</h3>
+                <div class="nav">
+                    {% for g in general %}
+                        {% if g.topic_id == 1 %}
+                            <a href="{{g.url}}" target="_blank">{{g.name}}</a>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="column">
+                <h3>Sites</h3>
+                <div class="nav">
+                    {% for g in general %}
+                        {% if g.topic_id == 4 %}
+                            <a href="{{g.url}}" target="_blank">{{g.name}}</a>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="column">
+                <h3>Hosting</h3>
+                <div class="nav">
+                    {% for g in general %}
+                        {% if g.topic_id == 5 %}
+                            <a href="{{g.url}}" target="_blank">{{g.name}}</a>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </main>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="{% static 'scripts.js' %}"></script>
+</body>
+</html>
